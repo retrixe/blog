@@ -1,0 +1,11 @@
+{
+  "presets": ["react", ["env", {
+    "targets": {
+      "browsers": [
+        "Firefox > 45",
+        "Chrome > 48"
+      ]
+    },
+    "modules": false
+  }], "stage-0"]
+}
