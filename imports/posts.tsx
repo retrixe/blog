@@ -4,6 +4,7 @@
 import * as React from "react";
 import { Paper, Typography, Button } from "material-ui";
 import { withStyles, createStyleSheet } from "material-ui/styles";
+import { Meteor } from "meteor/meteor";
 
 // Type for our props and stylesheet.
 /* eslint-disable no-undef */
@@ -63,7 +64,13 @@ const PostWithStyling = withStyles(styleSheet)(Post);
 
 // Our Posts element.
 // eslint-disable-next-line react/prefer-stateless-function
-export default class Posts extends React.PureComponent<{}, void> {
+export default class Posts extends React.PureComponent<{}, {}> {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
   render() {
     return (
       <div>
