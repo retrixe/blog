@@ -1,12 +1,13 @@
 /* eslint-env browser */
+/* eslint-disable react/no-unescaped-entities */
 // Import React components.
-import React from "react";
+import * as React from "react";
 import { render } from "react-dom";
 // Import Material-UI theming and components.
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { AppBar, Toolbar, Typography } from "material-ui";
 // Import Post component.
-import Posts from "./components/posts";
+import Posts from "../imports/posts";
 
 
 const App = () => {

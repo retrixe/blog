@@ -4,7 +4,7 @@ module.exports = {
     "meteor": true
   },
   "extends": "eslint-config-airbnb",
-  "parser": "babel-eslint",
+  "parser": "typescript-eslint-parser",
   "plugins": [
     "react"
   ],
@@ -39,7 +39,8 @@ module.exports = {
     // No PropTypes please.
     "react/prop-types": "off",
     // No package.json cross-validation kk bai.
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off"
   },
   "settings": { "import/resolver": { "meteor": { extensions: [".js", ".jsx"] } } }
 };

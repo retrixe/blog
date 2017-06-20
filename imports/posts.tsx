@@ -1,11 +1,32 @@
 /* eslint-env browser */
+/* eslint-disable react/no-unescaped-entities */
 // Import React and material-ui.
-import React from "react";
+import * as React from "react";
 import { Paper, Typography, Button } from "material-ui";
 import { withStyles, createStyleSheet } from "material-ui/styles";
 
+// Type for our props and stylesheet.
+/* eslint-disable no-undef */
+interface propType {
+  metadata: {
+    name: string;
+    markup: string;
+    date: string;
+  };
+  classes: {
+    root: string;
+    button: string;
+  };
+}
+interface themeType {
+  mixins: {
+    gutters: Function
+  }
+}
+/* eslint-enable no-undef */
+
 // A bit of styling for our Post component.
-const styleSheet = createStyleSheet("PaperSheet", theme => ({
+const styleSheet = createStyleSheet("PaperSheet", (theme: themeType) => ({
   root: theme.mixins.gutters({
     paddingTop: 12,
     paddingBottom: 12,
@@ -16,9 +37,8 @@ const styleSheet = createStyleSheet("PaperSheet", theme => ({
   },
 }));
 
-
 // Let's define our Posts component.
-const Post = (props) => {
+const Post = (props: propType) => {
   const minutesToRead = Math.round(props.metadata.markup.split(" ").length / 60);
   const date = `Written on ${props.metadata.date} | ${minutesToRead} minute read.`;
   return (
@@ -43,7 +63,7 @@ const PostWithStyling = withStyles(styleSheet)(Post);
 
 // Our Posts element.
 // eslint-disable-next-line react/prefer-stateless-function
-export default class Posts extends React.PureComponent {
+export default class Posts extends React.PureComponent<{}, void> {
   render() {
     return (
       <div>
