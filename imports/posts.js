@@ -1,25 +1,23 @@
-/* eslint-env browser */
+// @flow
 /* eslint-disable react/no-unescaped-entities */
 // Import React and material-ui.
 import * as React from "react";
 import { Paper, Typography, Button } from "material-ui";
 import { withStyles, createStyleSheet } from "material-ui/styles";
-import { Meteor } from "meteor/meteor";
 
 // Type for our props and stylesheet.
-/* eslint-disable no-undef */
-interface propType {
+type propType = {
   metadata: {
-    name: string;
-    markup: string;
-    date: string;
-  };
+    name: string,
+    markup: string,
+    date: string,
+  },
   classes: {
-    root: string;
-    button: string;
-  };
+    root: string,
+    button: string,
+  },
 }
-interface themeType {
+type themeType = {
   mixins: {
     gutters: Function
   }
@@ -64,12 +62,15 @@ const PostWithStyling = withStyles(styleSheet)(Post);
 
 // Our Posts element.
 // eslint-disable-next-line react/prefer-stateless-function
-export default class Posts extends React.PureComponent<{}, {}> {
+export default class Posts extends React.PureComponent {
   constructor() {
     super();
 
     this.state = {};
   }
+
+  state: {}
+
 
   render() {
     return (

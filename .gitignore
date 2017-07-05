@@ -1,9 +1,9 @@
 # Logs
-logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs
 
 # Runtime data
 pids
@@ -56,6 +56,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-# Meteor local.
-.meteor/local/

@@ -1,30 +1,18 @@
 module.exports = {
   "env": {
     "es6": true,
-    "meteor": true
+    "browser": true
   },
   "extends": "eslint-config-airbnb",
-  "parser": "typescript-eslint-parser",
+  "parser": "babel-eslint",
   "plugins": [
     "react"
   ],
   "rules": {
-    "indent": [
-      "error",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
-    "quotes": [
-      "error",
-      "double"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "windows"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
     "no-unused-vars": [
       "error",
       {
@@ -41,6 +29,5 @@ module.exports = {
     // No package.json cross-validation kk bai.
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off"
-  },
-  "settings": { "import/resolver": { "meteor": { extensions: [".js", ".jsx"] } } }
+  }
 };
