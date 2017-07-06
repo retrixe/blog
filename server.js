@@ -2,9 +2,7 @@
 // Require next.js, express and necessary tools.
 const express = require("express");
 const next = require("next");
-const fs = require("fs");
-const path = require("path");
-const marky = require("marky-markdown");
+const apiServer = require("apiServer");
 
 // Initialize our server application.
 const app = express();
@@ -20,12 +18,9 @@ const handle = webApp.getRequestHandler();
 webApp.prepare().then(() => {
   // Setup the API server! This is the application's core.. It's just 3 lines! (A WIP, but 90% done)
   app.get("/api", (req, res) => {
-    // Get the plain markdown post.
-    const markdown = fs.readFileSync(path.join(__dirname, "posts", `${req.query.post}.md`));
-    // Parse the markdown to HTML.
-    const html = marky(markdown);
-    // Finally, send the HTML to the client.
-    res.send(html);
+    // Call our API server depending on the query.
+    if (req.query.post) res.send(apiServer.getPost(req.query.post));
+    else apiServer.sendPost(req.query.post);
   });
 
   // Handle all incoming requests (intercepts must precede this)
