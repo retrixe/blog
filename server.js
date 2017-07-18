@@ -2,7 +2,7 @@
 // Require next.js, express and necessary tools.
 const express = require("express");
 const next = require("next");
-const apiServer = require("apiServer");
+const apiServer = require("./imports/apiServer");
 
 // Initialize our server application.
 const app = express();

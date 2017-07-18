@@ -23,9 +23,6 @@ module.exports = {
     "no-var": "off",
     // For JSX in .js files.
     "react/jsx-filename-extension": "off",
-    "import/extensions": "off",
-    // No PropTypes please.
-    "react/prop-types": "off",
     // No package.json cross-validation kk bai.
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off"

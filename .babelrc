@@ -2,7 +2,7 @@
   "presets": ["react", ["env", {
     "targets": {
       "node": "current",
-      "browsers": ["last 2 versions", ">= 5%", "Firefox ESR"]
+      "browsers": ["last 2 versions", ">= 1%", "Firefox ESR"]
     },
     "useBuiltIns": true,
     "modules": false

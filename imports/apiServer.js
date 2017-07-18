@@ -13,13 +13,12 @@ module.exports = {
     // Finally, return the HTML to be sent to the client.
     return html;
   },
-  getListOfPosts: () => {
-    const arrayOfFiles = fs.readdirSync(path.join(__dirname, "..", "posts"));
-    const arrayOfPosts = arrayOfFiles.map((file) => {
-      if (file.endsWith(".md")) {
-        return file.slice(0, -3);
-      }
+  getPostsMetadata: () => {
+    // Get the metadata.json which tells us about all the posts.
+    const metadata = fs.readFileSync(path.join(__dirname, "..", "posts", "metadata.json"), {
+      encoding: "utf8",
     });
-    return arrayOfPosts;
+    // Return the metadata JSONic file to be sent to the client.
+    return metadata;
   },
 };
