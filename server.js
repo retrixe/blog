@@ -20,7 +20,7 @@ webApp.prepare().then(() => {
   app.get("/api", (req, res) => {
     // Call our API server depending on the query.
     if (req.query.post) res.send(apiServer.getPost(req.query.post));
-    else apiServer.sendPost(req.query.post);
+    else res.send(apiServer.getPostsMetadata());
   });
 
   // Handle all incoming requests (intercepts must precede this)

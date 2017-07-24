@@ -1,3 +1,3 @@
-- [ ] Generate a tiny extract of the post at first and expand to the entire blog post.
-- [ ] Setup the server to tell the client the number of posts in chronological order.
-- [ ] Setup the client to lazily fetch HTML posts from the server.
+- [ ] Generate a small extract of the post at first and expand to the entire blog post.
+- [ ] Enhance spacing in the UI.
+- [ ] Setup the client to lazy fetch HTML posts from the server.

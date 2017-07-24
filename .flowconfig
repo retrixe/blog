@@ -4,6 +4,7 @@
 .*/node_modules/material-ui/test-utils/.*
 .*/node_modules/mitt/src/.*
 .*/node_modules/babel-plugin-transform-react-remove-prop-types/src/index.js.*
+.*/node_modules/jss/lib/plugins/RegularRule.js.flow.*
 
 [include]
 

@@ -1,23 +1,68 @@
 // @flow
 // Import React and isomorphic-fetch.
 import * as React from "react";
+import fetch from "isomorphic-unfetch";
+
+// Import Post element.
 import Post from "./post";
 
+// Our state should have this structure.
+type State = {
+  noOfLoadedPosts: number,
+  posts: React.createElement
+}
+
 // Our Posts element.
-export default class Posts extends React.PureComponent<void, {}, Object> {
+export default class Posts extends React.PureComponent {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      noOfLoadedPosts: 0,
+      posts: [],
+    };
   }
 
-  state: {}
+  state: State
+
+  componentDidMount() {
+    this.componentDidMountHelper();
+  }
+
+  async componentDidMountHelper() {
+    // Fetch metadata.
+    const res = await fetch("http://localhost:3000/api");
+    // Extract data from our request.
+    let data;
+    if (res.ok) data = await res.json();
+    else throw new (() => ({ message: "Could not fetch post metadata." }))();
+    // For every post in the metadata array, generate a Post.
+    const PostArray = [];
+    for (let i = 0; i < data.posts.length; i += 1) {
+      /* eslint-disable no-await-in-loop */
+      const postRes = await fetch("http://localhost:3000/api?post=lorem_ipsum");
+      const postResData = await postRes.text();
+      /* eslint-enable */
+      const postMetadata = data.metadataOfPosts[data.posts[i]];
+      PostArray.push((
+        <Post metadata={{
+          name: postMetadata.name,
+          date: postMetadata.date,
+          markup: postResData,
+        }}
+        />
+      ));
+    }
+    this.setState({ posts: PostArray });
+  }
+
+  props: {}
 
   render() {
     return (
       <div>
         <div style={{ height: "4em" }} />
-        <Post metadata={{ name: "The working of chocolate.", date: "2/3/2017", markup: "I must admit, lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc fringilla convallis ante non elementum. Etiam eget finibus nisl, vitae eleifend leo. Suspendisse at laoreet ante. Morbi feugiat augue eu elementum tincidunt. Praesent tincidunt congue egestas. Phasellus hendrerit eleifend ante, nec scelerisque lacus. Suspendisse tincidunt tincidunt posuere. Morbi id nulla a ex commodo pellentesque. Phasellus risus libero, volutpat vitae aliquet nec, malesuada quis est. Duis viverra, metus eu gravida maximus, ipsum nulla egestas elit, sit amet vulputate nunc arcu id ante. Donec cursus purus nec libero ullamcorper, facilisis tristique tortor mattis." }} />
+        {this.state.posts}
       </div>
     );
   }
