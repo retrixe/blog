@@ -43,7 +43,7 @@ export default class Posts extends React.PureComponent {
     const PostArray = []
     for (let i = 0; i < data.posts.length; i += 1) {
       /* eslint-disable no-await-in-loop */
-      const postRes = await fetch('http://localhost:3000/api?post=lorem_ipsum')
+      const postRes = await fetch(`http://localhost:3000/api?post=${data.posts[i]}`)
       const postResData = await postRes.text()
       /* eslint-enable */
       const postMetadata = data.metadataOfPosts[data.posts[i]]
@@ -56,7 +56,7 @@ export default class Posts extends React.PureComponent {
         /></Grid>
       ))
     }
-    this.setState({ posts: PostArray })
+    this.setState({ posts: PostArray, noOfLoadedPosts: PostArray.length })
   }
 
   props: {}
