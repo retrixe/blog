@@ -4,38 +4,42 @@
   "description": "My blog.",
   "private": true,
   "scripts": {
+    "dev": "node server.js",
     "build": "next build",
-    "start": "node server.js",
+    "start": "node server.js --production",
     "lint": "eslint . && flow check"
   },
   "engines": {
     "node": ">= 4.x"
   },
   "dependencies": {
-    "express": "^4.15.3",
+    "express": "^4.16.2",
     "isomorphic-unfetch": "^2.0.0",
     "marky-markdown": "^11.0.0",
-    "material-ui": "1.0.0-alpha.19",
+    "material-ui": "1.0.0-beta.4",
     "moment": "^2.18.1",
-    "next": "^2.4.7",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "next": "^5.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@types/node": "^8.0.15",
-    "@types/react": "^15.0.38",
-    "@types/react-dom": "^15.5.1",
+    "@types/node": "^8.0.20",
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^15.5.2",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-babili": "^0.1.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb": "^15.1.0",
+    "eslint": "^4.4.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-import": "^2.6.1",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0",
-    "flow-bin": "^0.51.0"
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.2.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "flow-bin": "^0.52.0"
   }
 }

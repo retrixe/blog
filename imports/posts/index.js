@@ -1,10 +1,13 @@
 // @flow
 // Import React and isomorphic-fetch.
-import * as React from "react";
-import fetch from "isomorphic-unfetch";
+import * as React from 'react'
+import fetch from 'isomorphic-unfetch'
 
 // Import Post element.
-import Post from "./post";
+import Post from './post'
+
+// Import Material UI's responsive grid system.
+import { Grid } from 'material-ui'
 
 // Our state should have this structure.
 type State = {
@@ -14,56 +17,55 @@ type State = {
 
 // Our Posts element.
 export default class Posts extends React.PureComponent {
-  constructor() {
-    super();
+  constructor () {
+    super()
 
     this.state = {
       noOfLoadedPosts: 0,
-      posts: [],
-    };
+      posts: []
+    }
   }
 
   state: State
 
-  componentDidMount() {
-    this.componentDidMountHelper();
+  componentDidMount () {
+    this.componentDidMountHelper()
   }
 
-  async componentDidMountHelper() {
+  async componentDidMountHelper () {
     // Fetch metadata.
-    const res = await fetch("http://localhost:3000/api");
+    const res = await fetch('http://localhost:3000/api')
     // Extract data from our request.
-    let data;
-    if (res.ok) data = await res.json();
-    else throw new (() => ({ message: "Could not fetch post metadata." }))();
+    let data
+    if (res.ok) data = await res.json()
+    else throw new (() => ({ message: 'Could not fetch post metadata.' }))()
     // For every post in the metadata array, generate a Post.
-    const PostArray = [];
+    const PostArray = []
     for (let i = 0; i < data.posts.length; i += 1) {
       /* eslint-disable no-await-in-loop */
-      const postRes = await fetch("http://localhost:3000/api?post=lorem_ipsum");
-      const postResData = await postRes.text();
+      const postRes = await fetch('http://localhost:3000/api?post=lorem_ipsum')
+      const postResData = await postRes.text()
       /* eslint-enable */
-      const postMetadata = data.metadataOfPosts[data.posts[i]];
+      const postMetadata = data.metadataOfPosts[data.posts[i]]
       PostArray.push((
-        <Post metadata={{
+        <Grid item xs><Post metadata={{
           name: postMetadata.name,
           date: postMetadata.date,
-          markup: postResData,
+          markup: postResData
         }}
-        />
-      ));
+        /></Grid>
+      ))
     }
-    this.setState({ posts: PostArray });
+    this.setState({ posts: PostArray })
   }
 
   props: {}
 
-  render() {
+  render () {
     return (
-      <div>
-        <div style={{ height: "4em" }} />
+      <Grid container spacing={16}>
         {this.state.posts}
-      </div>
-    );
+      </Grid>
+    )
   }
 }
