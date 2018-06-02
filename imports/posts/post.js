@@ -1,46 +1,27 @@
-// @flow
 // Import React and material-ui.
 import * as React from 'react'
-import { Paper, Typography, Button } from 'material-ui'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import PropTypes from 'prop-types'
+import { Paper, Typography, Button, withStyles } from '@material-ui/core'
 
 // Type for our props and stylesheet.
-type propType = {
-  metadata: {
-    name: string,
-    markup: string,
-    date: string,
-  },
-  classes: {
-    root: string,
-    button: string,
-  },
-}
-type stateType = {
-  showFullPost: boolean,
-}
-type themeType = {
-  mixins: {
-    gutters: Function
-  }
-}
-/* eslint-enable no-undef */
 
 // A bit of styling for our Post component.
-const styleSheet = createStyleSheet('PaperSheet', (theme: themeType) => ({
+const styleSheet = theme => ({
   root: theme.mixins.gutters({
     paddingTop: 12,
-    paddingBottom: 12
+    paddingBottom: 12,
+    marginLeft: 16,
+    marginBottom: 24
   }),
   button: {
     marginTop: 6,
     padding: '4px'
   }
-}))
+})
 
 // Let's define our Post component.
-class Post extends React.PureComponent<void, propType, stateType> {
-  constructor (props: propType) {
+class Post extends React.PureComponent {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -48,15 +29,13 @@ class Post extends React.PureComponent<void, propType, stateType> {
     }
   }
 
-  state: stateType
-
   render () {
     const minutesToRead = Math.round(this.props.metadata.markup.split(' ').length / 60)
     const date = `Written on ${this.props.metadata.date} | ${minutesToRead} minute read.`
     return (
       <Paper elevation={4} className={this.props.classes.root}>
-        <Typography type='headline' component='h3' align='center'>{this.props.metadata.name}</Typography>
-        <Typography type='subheading' component='h5' align='center'>{date}</Typography>
+        <Typography variant='headline' component='h3' align='center'>{this.props.metadata.name}</Typography>
+        <Typography variant='subheading' component='h5' align='center'>{date}</Typography>
         <div style={{ height: 4 }} />
         <Typography
           type='body1'
@@ -69,6 +48,11 @@ class Post extends React.PureComponent<void, propType, stateType> {
       </Paper>
     )
   }
+}
+
+Post.propTypes = {
+  metadata: PropTypes.object,
+  classes: PropTypes.object
 }
 
 // Styled Post component.

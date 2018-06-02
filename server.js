@@ -35,7 +35,6 @@ webApp.prepare().then(() => {
   // Finally, listen on port 3000 and wait..
   app.listen(3000, (err) => {
     if (err) throw err
-    // eslint-disable-next-line no-console
     console.log('> Ready on http://localhost:3000')
   })
 })

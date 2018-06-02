@@ -1,38 +1,32 @@
-// @flow
-// Get React and Head to populate <head />
+// Get React
 import React from 'react'
-import Head from 'next/head'
 
 // Import material-ui and all icons.
-import { AppBar, Toolbar, Typography as Text, IconButton, Button } from 'material-ui'
-import GitHubLogo from '../imports/github-logo'
+import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core'
+import GitHubLogo from './github-logo'
 
 // Write our page header.
 const Header = () => {
   return (
     <div>
-      <Head>
-        <title>{`retrixe's blog`}</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-      </Head>
       <AppBar position='fixed'>
         <Toolbar>
-          <Text type='title' color='inherit'>{`retrixe's blog`}</Text>
+          <Typography variant='title' color='inherit'>{`retrixe's blog`}</Typography>
           <div style={{flex: 1}} />
           <Button
             title='Fork me on GitHub'
             target='_blank'
             rel='noopener noreferrer'
             href='https://github.com/retrixe/blog'
-            color='contrast'
+            color='inherit'
           >Fork Me
           </Button>
           <a href='https://github.com/retrixe' title='My GitHub Page' target='_blank' rel='noopener noreferrer'>
-            <IconButton color='contrast'><GitHubLogo /></IconButton>
+            <IconButton color='default'><GitHubLogo /></IconButton>
           </a>
         </Toolbar>
       </AppBar>
-      <br /> <br /> <br /> <br />
+      <br /> <br /> <br /> <br /> <br />
     </div>
   )
 }
