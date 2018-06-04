@@ -5,9 +5,6 @@ import fetch from 'isomorphic-unfetch'
 // Import Post element.
 import Post from './post'
 
-// Import Material UI's responsive grid system.
-import { Grid } from '@material-ui/core'
-
 // Our Posts element.
 export default class Posts extends React.PureComponent {
   constructor () {
@@ -32,17 +29,17 @@ export default class Posts extends React.PureComponent {
     else throw new (() => ({ message: 'Could not fetch post metadata.' }))()
     // For every post in the metadata array, generate a Post.
     const PostArray = []
-    for (let i = 0; i < data.posts.length; i += 1) {
-      const postRes = await fetch(`http://localhost:3000/api?post=${data.posts[i]}`)
+    for (let post in data.metadataOfPosts) {
+      const postRes = await fetch(`http://localhost:3000/api?post=${post}`)
       const postResData = await postRes.text()
-      const postMetadata = data.metadataOfPosts[data.posts[i]]
+      const postMetadata = data.metadataOfPosts[post]
       PostArray.push((
-        <Grid item xl><Post metadata={{
+        <Post metadata={{
           name: postMetadata.name,
           date: postMetadata.date,
           markup: postResData
-        }}
-        /></Grid>
+        }} key={post}
+        />
       ))
     }
     this.setState({ posts: PostArray, noOfLoadedPosts: PostArray.length })
@@ -50,9 +47,9 @@ export default class Posts extends React.PureComponent {
 
   render () {
     return (
-      <Grid container style={{ width: '100%' }}>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
         {this.state.posts}
-      </Grid>
+      </div>
     )
   }
 }

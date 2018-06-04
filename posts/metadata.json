@@ -1,8 +1,7 @@
 {
-  "posts": ["lorem_ipsum"],
   "metadataOfPosts": {
     "lorem_ipsum": {
-      "name": "The working of chocolate.",
+      "name": "Test.",
       "date": "2/3/2017"
     }
   }

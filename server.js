@@ -2,7 +2,7 @@
 // Require next.js, express and necessary tools.
 const express = require('express')
 const next = require('next')
-const apiServer = require('./imports/apiServer')
+const api = require('./api')
 
 // Initialize our server application.
 const app = express()
@@ -25,8 +25,8 @@ webApp.prepare().then(() => {
   // Setup the API server! This is the application's core.. It's just 3 lines! (A WIP, but 90% done)
   app.get('/api', (req, res) => {
     // Call our API server depending on the query.
-    if (req.query.post) res.send(apiServer.getPost(req.query.post))
-    else res.send(apiServer.getPostsMetadata())
+    if (req.query.post) res.send(api.getPost(req.query.post))
+    else res.send(api.getPostsMetadata())
   })
 
   // Handle all incoming requests (intercepts must precede this)
