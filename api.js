@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const marky = require('marky-markdown')
+const remark = require('remark')
+const remarkhtml = require('remark-html')
 
 module.exports = {
   getPost: (postQuery) => {
@@ -9,8 +10,10 @@ module.exports = {
       encoding: 'utf8'
     })
     // Parse the markdown to HTML.
-    const html = marky(markdown, {
-      enableHeadingLinkIcons: false
+    let html
+    remark().use(remarkhtml).process(markdown, (err, file) => {
+      if (err) console.error(err)
+      html = String(file)
     })
     // Finally, return the HTML to be sent to the client.
     return html
