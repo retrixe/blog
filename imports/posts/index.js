@@ -22,7 +22,7 @@ export default class Posts extends React.PureComponent {
 
   async componentDidMountHelper () {
     // Fetch metadata.
-    const res = await fetch('http://localhost:3000/api')
+    const res = await fetch('/api')
     // Extract data from our request.
     let data
     if (res.ok) data = await res.json()
@@ -30,7 +30,7 @@ export default class Posts extends React.PureComponent {
     // For every post in the metadata array, generate a Post.
     const PostArray = []
     for (let post in data.metadataOfPosts) {
-      const postRes = await fetch(`http://localhost:3000/api?post=${post}`)
+      const postRes = await fetch(`/api?post=${post}`)
       const postResData = await postRes.text()
       const postMetadata = data.metadataOfPosts[post]
       PostArray.push((

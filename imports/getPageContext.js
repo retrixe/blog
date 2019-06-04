@@ -1,10 +1,15 @@
+/* eslint-disable no-underscore-dangle */
+
 import { SheetsRegistry } from 'jss'
 import { createMuiTheme, createGenerateClassName, colors } from '@material-ui/core'
 
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
-  palette: { primary: colors.cyan }
+  palette: {
+    primary: colors.cyan,
+    type: 'light'
+  }
 })
 
 function createPageContext () {

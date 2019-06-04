@@ -1,6 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-// Replaces the index.html file :3
-// Get React and Head to populate <head />
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import JssProvider from 'react-jss/lib/JssProvider'
@@ -12,7 +9,7 @@ class MyDocument extends Document {
     const { pageContext } = this.props
 
     return (
-      <html lang='en-US'>
+      <html lang='en' dir='ltr'>
         <Head>
           <title>retrixe's blog</title>
           <link rel='icon' href='/static/favicon.png' />
@@ -27,6 +24,10 @@ class MyDocument extends Document {
           />
           {/* PWA primary color */}
           <meta name='theme-color' content={pageContext.theme.palette.primary.main} />
+          {/* Open Graph Protocol support. */}
+          <meta property='og:title' content='retrixe blog' />
+          <meta property='og:type' content='website' />
+          <meta property='og:image' content='/static/favicon.png' />
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'
@@ -77,6 +78,7 @@ MyDocument.getInitialProps = ctx => {
       <React.Fragment>
         <style
           id='jss-server-side'
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
         />
         {flush() || null}

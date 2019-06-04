@@ -34,9 +34,7 @@ class Post extends React.PureComponent {
   render () {
     const minutesToRead = Math.round(this.props.metadata.markup.split(' ').length / 60)
     const date = `Written on ${this.props.metadata.date} | ${minutesToRead} minute read.`
-    const truncated = this.props.metadata.markup.split('\n').filter((value, index) => {
-      if (index <= 4) return value
-    }).join('\n')
+    const truncated = this.props.metadata.markup.split('\n')[0]
     return (
       <Paper elevation={4} className={this.props.classes.root}>
         <Typography variant='headline' component='h3' align='center'>{this.props.metadata.name}</Typography>
